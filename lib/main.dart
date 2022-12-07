@@ -1,6 +1,48 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_workmanager_demo/notification_service.dart';
+import 'package:workmanager/workmanager.dart';
+
+const simplePeriodic1HourTask = "simplePeriodic1HourTask";
+
+@pragma(
+    'vm:entry-point') // Mandatory if the App is obfuscated or using Flutter 3.1+
+void callbackDispatcher() {
+  NotificationService notificationService = NotificationService();
+  notificationService.initNotifications();
+  Workmanager().executeTask((task, inputData) async {
+    switch (task) {
+      case simplePeriodic1HourTask:
+        print("$simplePeriodic1HourTask was executed");
+        notificationService.showNotification("test_channel_id", "Test Channel",
+            0, 'Hi, There', 'I will appear every 1 hour [android]');
+        break;
+      case Workmanager.iOSBackgroundTask:
+        print("The iOS background fetch was triggered");
+        notificationService.showNotification("test_channel_id", "Test Channel",
+            0, 'Hi, There', 'I will appear every 1 hour [iOS background fetch]');
+        break;
+    }
+    return Future.value(true);
+  });
+}
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Workmanager().initialize(
+      callbackDispatcher, // The top level function, aka callbackDispatcher
+      isInDebugMode:
+          true // If enabled it will post a notification whenever the task is running. Handy for debugging tasks
+      );
+
+  // Periodic task registration
+  Workmanager().registerPeriodicTask(
+    "periodic-task-identifier",
+    "simplePeriodicTask",
+    inputData: {},
+    // When no frequency is provided the default 15 minutes is set.
+    // Minimum frequency is 15 min. Android will automatically change your frequency to 15 min if you have configured a lower frequency.
+    // frequency: const Duration(hours: 1),
+  );
   runApp(const MyApp());
 }
 
