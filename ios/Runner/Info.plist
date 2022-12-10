@@ -9,7 +9,7 @@
     </array>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>simplePeriodic1HourTask</string>
+		<string>periodic-task-identifier</string>
    </array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

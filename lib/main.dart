@@ -49,7 +49,7 @@ void main() {
     inputData: {},
     // When no frequency is provided the default 15 minutes is set.
     // Minimum frequency is 15 min. Android will automatically change your frequency to 15 min if you have configured a lower frequency.
-    // frequency: const Duration(hours: 1),
+     frequency: const Duration(minutes: 15),
   );
   runApp(const MyApp());
 }
