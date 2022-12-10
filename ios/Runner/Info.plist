@@ -4,8 +4,13 @@
 <dict>
     <key>UIBackgroundModes</key>
     <array>
+	  <string>processing</string>
 	  <string>fetch</string>
     </array>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>simplePeriodic1HourTask</string>
+   </array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
