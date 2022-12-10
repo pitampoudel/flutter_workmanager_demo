@@ -18,7 +18,7 @@ void callbackDispatcher() {
             "Work Manager Channel",
             11,
             'Hi, There',
-            'I will appear every 1 hour [android]');
+            'I will appear every 15 minutes [android]');
         break;
       case Workmanager.iOSBackgroundTask:
         print("The iOS background fetch was triggered");
@@ -27,7 +27,7 @@ void callbackDispatcher() {
             "Work Manager Channel",
             11,
             'Hi, There',
-            'I will appear every 1 hour [iOS background fetch]');
+            'I will appear every 15 minutes [iOS background fetch]');
         break;
     }
     return Future.value(true);
